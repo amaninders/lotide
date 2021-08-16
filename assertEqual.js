@@ -1,5 +1,5 @@
 const assertEqual = function(a,b) {
-  console.log((a === b) ? '✅✅✅ Assertion Passed: ' + a + ' === ' + b : '🔴🔴🔴 Assertion Failed: ' + a + ' !== ' + b);
+  console.log((a === b) ? `✅ Assertion Passed: ${a} === ${b}` : `🔴 Assertion Failed: ${a} !== ${b}`);
 };
 
 
