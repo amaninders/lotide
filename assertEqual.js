@@ -3,7 +3,5 @@ const assertEqual = function(a,b) {
 };
 
 // TEST CODE
-assertEqual("Lighthouse Labs","Lighthouse Labs");
-assertEqual(1,1);
 assertEqual("Lighthouse Labs","Bootcamp");
-assertEqual(1,3);
+assertEqual(1,1);
