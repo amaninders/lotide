@@ -3,9 +3,7 @@ const assertEqual = function(a,b) {
 };
 
 const tail = function(array) {
-  let output = [...array];
-  (array.length <= 1) ? output = [] : output.shift();
-  return output;
+  return (array.length <= 1) ? [] : array.slice(1);
 };
 
 // TEST CODE
