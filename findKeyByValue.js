@@ -2,6 +2,7 @@
 const assertEqual = function(a,b) {
   console.log((a === b) ? `✅ Assertion Passed: a === b` : `🔴 Assertion Failed: a !== b`);
 };
+
 // ACTUAL FUNCTION
 const findKeyByValue = (object, value) => {
   for (const key in object) {
