@@ -1,33 +1,29 @@
 // TEST/ASSERTION FUNCTIONS
-const eqArrays = function (arr1, arr2) {
-
+const eqArrays = (arr1, arr2) => {
+  // compare length of arrays then do element match with anonymous function
   return (arr1.length === arr2.length) ? arr1.every((element,index) => element === arr2[index]) : false;
 };
 
-const assertArraysEqual = function(actual, expected) {
-  console.log((actual === expected) ? `✅ Assertion Passed: ${actual} === ${expected}` : `🔴 Assertion Failed: ${actual} !== ${expected}`);
+const assertArraysEqual = function(a,b) {
+  console.log((eqArrays(a, b)) ? `✅ Assertion Passed: [${a}] === [${b}]` : `🔴 Assertion Failed: [${a}] !== [${b}]`);
 };
 
 // ACTUAL FUNCTION
 const middle = function(array) {
 
-  let output = [];
   const length = array.length;
   const isEven = (array.length % 2 === 0);
-  const startIndex = Math.floor((length-1)/2);
+  const startIndex = Math.floor((length - 1) / 2);
   const endIndex = startIndex + (isEven ? 2 : 1);
   
-  return (length > 2) ? array.slice(startIndex, endIndex) : [] ;
+  return (length > 2) ? array.slice(startIndex, endIndex) : [];
 
-}
+};
 
 // TEST CODE
-assertArraysEqual(eqArrays((middle([1])),[]),true); // should be true
-assertArraysEqual(eqArrays((middle([1])),[1]),false); // should be false
-assertArraysEqual(eqArrays((middle([1,2])),[]),true); // should be true
-assertArraysEqual(eqArrays((middle([1,2])),[1,2]),false); // should be false
-assertArraysEqual(eqArrays((middle([1,2,3])),[2]),true); // should be true
-assertArraysEqual(eqArrays((middle([1,2,3,4])),[2,3]),true); // should be true
-assertArraysEqual(eqArrays((middle([1,2,3,4])),[2,3]),true); // should be true
-assertArraysEqual(eqArrays((middle([1,2,3,4,5,6])),[3,4]),true); // should be true
-assertArraysEqual(eqArrays((middle([1,2,3,4,5,6])),[2,3]),false); // should be false
+assertArraysEqual(middle([1]),[]); // should be true
+assertArraysEqual(middle([1,2]),[]); // should be true
+assertArraysEqual(middle([1,2,3]),[2]); // should be true
+assertArraysEqual(middle([1,2,3,4]),[2,3]); // should be true
+assertArraysEqual(middle([1,2,3,4]),[2,3]); // should be true
+assertArraysEqual(middle([1,2,3,4,5,6]),[3,4]); // should be true
