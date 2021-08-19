@@ -5,7 +5,7 @@ const assertEqual = function(a,b) {
 
 // ACTUAL FUNCTION
 
-const countOnly = function (allItems, itemsToCount) {
+const countOnly = function(allItems, itemsToCount) {
   const results = {};
 
   for (const item of allItems) {
@@ -14,7 +14,7 @@ const countOnly = function (allItems, itemsToCount) {
     }
   }
   return results;
-}
+};
 
 
 // TEST CODE
