@@ -12,20 +12,31 @@ const eqArrays = (arr1, arr2) => {
 // ACTUAL FUNCTION
 const eqObjects = function(object1, object2) {
 
-  const array1 = Object.keys(object1);
-  const array2 = Object.keys(object2);
+  const keysObject1 = Object.keys(object1);
+  const keysObject2 = Object.keys(object2);
 
   // Otherwise you get back a big fat false!
-  if (array1.length !== array2.length) {
+  if (keysObject1.length !== keysObject2.length) {
     return false;
   }
 
-  for (const child of array1) {
-    const arrayItems = (Array.isArray(object1[child]) && Array.isArray(object2[child]));
+  for (const key of keysObject1) {
 
-    if (arrayItems) {
-      eqArrays(object1[child], object2[child]);
-    } else if (object1[child] !== object2[child]) {
+    // initialize two items from each object with same key
+    const firstItem = object1[key];
+    const secondItem = object2[key];
+
+    // custom function to check the object type
+    const isObject = (obj => Object.prototype.toString.call(obj) === '[object Object]');
+
+    const isArrayItem = Array.isArray(firstItem) && Array.isArray(secondItem);
+    const isObjectItem = isObject(firstItem) && isObject(secondItem);
+
+    if (isObjectItem && !eqObjects(firstItem, secondItem)) {
+      return false;
+    } else if (isArrayItem && !eqArrays(firstItem, secondItem)) {
+      return false;
+    } else if (!isObjectItem && !isArrayItem && firstItem !== secondItem) {
       return false;
     }
   }
@@ -38,19 +49,21 @@ const eqObjects = function(object1, object2) {
 // TEST CODE
 const ab = { a: "1", b: "2" };
 const ba = { b: "2", a: "1" };
-const abc = { a: "1", b: "2", c: "3" };
 assertEqual(eqObjects(ab, ba), true); // should pass
-assertEqual(eqObjects(ab, abc), false); // should fail
+
 
 
 const cd = { c: "1", d: ["2", 3] };
 const dc = { d: ["2", 3], c: "1" };
-const cd2 = { c: "1", d: ["2", 3, 4] };
 assertEqual(eqObjects(cd, dc), true); // should pass
-assertEqual(eqObjects(cd, cd2), false); // should fail
+
 
 const ef = { 1: "1", 2: { first: 'alpha', second: 'beta', third: 'gamma'}};
-const eg = { 1: "1", 2: ['alpha', 'beta', 'gamma']};
 const fg = { 2: { first: 'alpha', second: 'beta', third: 'gamma'}, 1: "1"};
-assertEqual(eqObjects(ef, eg), false); // should fail
 assertEqual(eqObjects(ef, fg), true); //should pass
+
+
+// More test cases from Compass Activity
+assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true); // => should pass
+assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true); // should fail
+assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }), true); // => should fail
