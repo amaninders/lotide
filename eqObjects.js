@@ -1,13 +1,4 @@
-// TEST/ASSERTION FUNCTIONS
-const assertEqual = function(a,b) {
-  console.log((a === b) ? `✅ Assertion Passed: a === b` : `🔴 Assertion Failed: a !== b`);
-};
-
-const eqArrays = (arr1, arr2) => {
-  // compare length of arrays then do element match with anonymous function
-  return (arr1.length === arr2.length) ? arr1.every((element,index) => element === arr2[index]) : false;
-};
-
+const eqArrays = require('./eqArrays');
 
 // ACTUAL FUNCTION
 const eqObjects = function(object1, object2) {
@@ -46,24 +37,4 @@ const eqObjects = function(object1, object2) {
   
 };
 
-// TEST CODE
-const ab = { a: "1", b: "2" };
-const ba = { b: "2", a: "1" };
-assertEqual(eqObjects(ab, ba), true); // should pass
-
-
-
-const cd = { c: "1", d: ["2", 3] };
-const dc = { d: ["2", 3], c: "1" };
-assertEqual(eqObjects(cd, dc), true); // should pass
-
-
-const ef = { 1: "1", 2: { first: 'alpha', second: 'beta', third: 'gamma'}};
-const fg = { 2: { first: 'alpha', second: 'beta', third: 'gamma'}, 1: "1"};
-assertEqual(eqObjects(ef, fg), true); //should pass
-
-
-// More test cases from Compass Activity
-assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true); // => should pass
-assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true); // should fail
-assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }), true); // => should fail
+module.exports = eqObjects;
