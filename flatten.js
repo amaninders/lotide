@@ -5,6 +5,7 @@ const flatten = array => {
   const output = [];
 
   const flatChild = (childArray) => {
+
     // execute for loop to generate the output
     for (const item of childArray) {
       if (Array.isArray(item)) {
@@ -16,6 +17,8 @@ const flatten = array => {
   };
 
   flatChild(array);
+
+	// return output
   return output;
 };
 
