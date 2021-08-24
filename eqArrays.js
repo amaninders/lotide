@@ -1,8 +1,3 @@
-// function to compare two inputs
-const assertEqual = function(a,b) {
-  console.log((a === b) ? `✅ Assertion Passed: ${a} === ${b}` : `🔴 Assertion Failed: ${a} !== ${b}`);
-};
-
 // function to compare the arrays
 const eqArrays = (array1, array2) => {
 
@@ -33,12 +28,4 @@ const eqArrays = (array1, array2) => {
   return output;
 };
 
-// TEST CODE
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => true
-assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), false); // => false
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true); // => true
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false); // => false
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => should PASS
-assertEqual(eqArrays([[2, 3], [4]], [[2, 3], [4]]), true); // => should PASS
-assertEqual(eqArrays([[2, 3], [4]], [[2, 3], [4, 5]]), false); // => should PASS
-assertEqual(eqArrays([[2, 3], [4]], [[2, 3], 4]), false); // => should PASS
+module.exports = eqArrays;
