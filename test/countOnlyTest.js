@@ -13,7 +13,7 @@ const firstNames = [
   "Joe"
 ];
 
-describe('countOnly', () =>  {
+describe('#countOnly', () =>  {
   it('should return {"Jason" : 1}', () => {
     assert.deepEqual(countOnly(firstNames, { "Jason": true}), {'Jason' : 1});
   });
